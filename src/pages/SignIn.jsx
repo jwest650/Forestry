@@ -6,10 +6,8 @@ import { useNavigate } from "react-router-dom";
 import useUserStore from "../store/UserStore";
 import BarLoader from "react-spinners/BarLoader";
 const axiosClient = axios.create({
-    BaseURL: "forestrybackend.herokuapp.com/",
-     timeout: 1000,
-
-})
+    baseURL: "https://forestrybackend.herokuapp.com/",
+});
 const SignIn = () => {
     const navigate = useNavigate();
     const saveUser = useUserStore((state) => state.currentUser);
@@ -27,7 +25,7 @@ const SignIn = () => {
         e.preventDefault();
         setisLoading(true);
         try {
-            const { data } = await axiosClient.post("api/login", {
+            const { data } = await axiosClient.post("/api/login", {
                 ...user,
             });
 
@@ -39,6 +37,7 @@ const SignIn = () => {
         } catch (error) {
             console.log(error);
             alert(error.message);
+            setisLoading(false);
         }
     };
 

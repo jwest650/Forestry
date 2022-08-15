@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-const axiosClient = axios.create({
-    BaseURL: "forestrybackend.herokuapp.com/",
-     timeout: 1000,
 
-})
+const axiosClient = axios.create({
+    baseURL: "https://forestrybackend.herokuapp.com/",
+});
+
 const useFetch = () => {
     const options = {
         method: "GET",
