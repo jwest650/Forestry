@@ -5,7 +5,11 @@ import { IoLockClosed } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useUserStore from "../store/UserStore";
 import BarLoader from "react-spinners/BarLoader";
+const axiosClient = axios.create({
+    BaseURL: "forestrybackend.herokuapp.com/",
+     timeout: 1000,
 
+})
 const SignIn = () => {
     const navigate = useNavigate();
     const saveUser = useUserStore((state) => state.currentUser);
@@ -23,7 +27,7 @@ const SignIn = () => {
         e.preventDefault();
         setisLoading(true);
         try {
-            const { data } = await axios.post("api/login", {
+            const { data } = await axiosClient.post("api/login", {
                 ...user,
             });
 
